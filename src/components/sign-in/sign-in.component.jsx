@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import './sign-in.styles.scss';
 import FormInput from '../form-input/form-input.component';
 import Button from '../custom-button/custom-button.component';
@@ -25,7 +24,6 @@ class SignIn extends React.Component {
                 email: '',
                 password: '',
             });
-            this.props.history.push("/shop");
         } catch {
             alert("Wrong email or password, please try again.");
         }
@@ -71,4 +69,4 @@ class SignIn extends React.Component {
     }
 }
 
-export default withRouter(SignIn);
+export default SignIn;
