@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import './sign-up.styles.scss';
 import FormInput from '../form-input/form-input.component';
 import Button from '../custom-button/custom-button.component';
@@ -38,8 +39,9 @@ class SignUp extends React.Component {
                 password: '',
                 confirmPassword: '',
             });
+            this.props.history.push("/shop");
         } catch (error) {
-            console.error(error);
+            alert(error);
         }
     }
 
@@ -94,4 +96,4 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp;
+export default withRouter(SignUp);

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import './header.styles.scss';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, history }) => (
     <nav className='header'>
         <Link to="/" className='logo-container'>
             <Logo className='logo' title='Go to Shop homepage' />
@@ -16,7 +16,10 @@ const Header = ({ currentUser }) => (
                 currentUser ?
                     <div
                         className='option'
-                        onClick={() => auth.signOut()}
+                        onClick={() => {
+                            auth.signOut();
+                            history.push("/signin");
+                        }}
                     >SIGN OUT</div>
                     :
                     <Link className='option' to="/signin">SIGN IN</Link>
@@ -25,4 +28,4 @@ const Header = ({ currentUser }) => (
     </nav>
 )
 
-export default Header;
+export default withRouter(Header);
