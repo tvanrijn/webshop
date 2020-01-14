@@ -1,15 +1,19 @@
 import React from "react";
-import "./stripe-button.styles.scss";
 import StripeCheckout from "react-stripe-checkout";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { emptyCart } from "../../redux/cart/cart.actions";
 
-const StripeCheckoutButton = ({ price }) => {
+const StripeCheckoutButton = ({ price, emptyCart, history }) => {
   const priceForStripe = price * 100;
   const publishableKey = "pk_test_6MriVS9VsteunQvCmCvRdLi700QQAhsZCn";
 
   const onToken = token => {
-    console.log(token);
-    alert("Payment succesful");
-    //empty cart
+    emptyCart();
+    alert(
+      `Thank you for your order. You will receive any status updates at ${token.email}`
+    );
+    history.push("/");
   };
 
   return (
@@ -29,4 +33,12 @@ const StripeCheckoutButton = ({ price }) => {
   );
 };
 
-export default StripeCheckoutButton;
+const mapDispatchToProps = dispatch => {
+  return {
+    emptyCart: () => dispatch(emptyCart())
+  };
+};
+
+export default withRouter(
+  connect(null, mapDispatchToProps)(StripeCheckoutButton)
+);
