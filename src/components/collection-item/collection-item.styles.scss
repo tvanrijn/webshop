@@ -14,7 +14,7 @@
   }
 
   &:hover {
-    .custom-button {
+    button {
       opacity: 0.85;
       display: flex;
     }
@@ -24,7 +24,7 @@
     }
   }
 
-  .custom-button {
+  button {
     width: 80%;
     opacity: 0.7;
     position: absolute;
