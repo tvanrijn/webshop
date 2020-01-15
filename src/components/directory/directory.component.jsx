@@ -1,14 +1,14 @@
 import React from 'react';
-import './directory.styles.scss';
 import MenuItem from '../menu-item/menu-item.component';
 import SECTIONS_DATA from "./sections.data.js";
+import { DirectoryMenu } from './directory.styles';
 
 const Directory = ({ sections }) => (
-    <div className='directory-menu'>
+    <DirectoryMenu>
         {sections.map(({ id, ...props }) => (
             <MenuItem key={id} {...props} />
         ))}
-    </div>
+    </DirectoryMenu>
 )
 
 Directory.defaultProps = {

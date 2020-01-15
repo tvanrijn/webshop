@@ -3,6 +3,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { emptyCart } from "../../redux/cart/cart.actions";
+import Button from "../custom-button/custom-button.component";
 
 const StripeCheckoutButton = ({ price, emptyCart, history }) => {
   const priceForStripe = price * 100;
@@ -18,7 +19,6 @@ const StripeCheckoutButton = ({ price, emptyCart, history }) => {
 
   return (
     <StripeCheckout
-      label="Pay Now"
       name="The Crown Shop"
       billingAddress
       shippingAddress
@@ -29,7 +29,9 @@ const StripeCheckoutButton = ({ price, emptyCart, history }) => {
       currency="EUR"
       token={onToken}
       stripeKey={publishableKey}
-    />
+    >
+      <Button>Order Now</Button>
+    </StripeCheckout>
   );
 };
 
