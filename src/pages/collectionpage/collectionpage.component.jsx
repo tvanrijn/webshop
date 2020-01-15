@@ -1,7 +1,7 @@
 import React from "react";
 import CollectionItem from "../../components/collection-item/collection-item.component";
 import SHOP_DATA from "../shop/shop.data";
-import "./collectionpage.styles.scss";
+import { CategoryContainer, CategoryTitle, ItemsContainer } from "./collectionpage.styles";
 
 const CollectionPage = ({ match, collections }) => {
   const collection = collections[match.params.collectionId];
@@ -9,14 +9,14 @@ const CollectionPage = ({ match, collections }) => {
   const { title, items } = collection;
 
   return (
-    <div className="category">
-      <h2 className="title">{title.toUpperCase()}</h2>
-      <div className="items">
+    <CategoryContainer>
+      <CategoryTitle>{title.toUpperCase()}</CategoryTitle>
+      <ItemsContainer>
         {items.map(item => (
           <CollectionItem key={item.id} item={item} />
         ))}
-      </div>
-    </div>
+      </ItemsContainer>
+    </CategoryContainer>
   );
 };
 
