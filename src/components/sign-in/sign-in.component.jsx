@@ -2,8 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import FormInput from "../form-input/form-input.component";
 import Button from "../custom-button/custom-button.component";
-import { createStructuredSelector } from "reselect";
-import { selectErrorMessage } from "../../redux/user/user.selectors";
 import {
   SignInContainer,
   SignInTitle,
@@ -23,28 +21,18 @@ class SignIn extends React.Component {
     };
   }
 
-  handleError() {
-    const { errorMessage } = this.props;
-
-    if (errorMessage) {
-      alert("Your login has failed. Please try again.");
-    }
-  }
-
   handleSubmit = async event => {
     event.preventDefault();
     const { email, password } = this.state;
     const { emailSignInStart } = this.props;
 
     emailSignInStart(email, password);
-    this.handleError();
   };
 
   handleGoogleSignIn = () => {
     const { googleSignInStart } = this.props;
 
     googleSignInStart();
-    this.handleError();
   };
 
   handleChange = event => {
@@ -90,10 +78,6 @@ class SignIn extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  errorMessage: selectErrorMessage
-});
-
 const mapDispatchToProps = dispatch => {
   return {
     googleSignInStart: () => dispatch(googleSignInStart()),
@@ -102,4 +86,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(null, mapDispatchToProps)(SignIn);

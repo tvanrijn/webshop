@@ -1,4 +1,12 @@
-import { takeLatest, takeLeading, put, call, all } from "redux-saga/effects";
+import {
+  takeLatest,
+  takeLeading,
+  put,
+  call,
+  all,
+  getContext, 
+  select
+} from "redux-saga/effects";
 import { UserActionTypes } from "./user.types";
 import {
   auth,
@@ -12,6 +20,7 @@ import {
   signOutSuccess,
   signOutFailure
 } from "./user.actions";
+import { selectErrorMessage } from "../../redux/user/user.selectors";
 
 export function* getSnapshotFromUser(user) {
   try {
@@ -23,12 +32,21 @@ export function* getSnapshotFromUser(user) {
   }
 }
 
+export function* handleError() {
+  const errorMessage = yield select(selectErrorMessage);
+
+  if (errorMessage) {
+    alert("Your login has failed. Please try again.");
+  }
+}
+
 export function* signInWithGoogle() {
   try {
     const { user } = yield auth.signInWithPopup(googleProvider);
     yield getSnapshotFromUser(user);
   } catch (error) {
     yield put(signInFailure(error.message));
+    yield handleError();
   }
 }
 
@@ -42,6 +60,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
     yield getSnapshotFromUser(user);
   } catch (error) {
     yield put(signInFailure(error.message));
+    yield handleError();
   }
 }
 
@@ -67,6 +86,8 @@ export function* signOut() {
   try {
     yield auth.signOut();
     yield put(signOutSuccess());
+    const history = yield getContext("history");
+    yield history.push("/signin");
   } catch (error) {
     yield put(signOutFailure(error.message));
   }

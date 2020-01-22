@@ -4,8 +4,14 @@ import { persistStore } from "redux-persist";
 import createSagaMiddleware from "redux-saga";
 import rootReducer from "./root-reducer";
 import rootSaga from "./root-saga";
+import { createBrowserHistory } from "history";
 
-const sagaMiddleware = createSagaMiddleware();
+export const history = createBrowserHistory();
+const sagaMiddleware = createSagaMiddleware({
+  context: {
+    history
+  }
+});
 const middlewares = [sagaMiddleware];
 
 if (process.env.NODE_ENV === "development") {
