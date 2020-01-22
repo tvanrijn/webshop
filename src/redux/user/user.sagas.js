@@ -4,7 +4,7 @@ import {
   put,
   call,
   all,
-  getContext, 
+  getContext,
   select
 } from "redux-saga/effects";
 import { UserActionTypes } from "./user.types";
@@ -32,11 +32,11 @@ export function* getSnapshotFromUser(user) {
   }
 }
 
-export function* handleError() {
+export function* handleError(action) {
   const errorMessage = yield select(selectErrorMessage);
 
   if (errorMessage) {
-    alert("Your login has failed. Please try again.");
+    alert(`Your ${action} has failed. Please try again.`);
   }
 }
 
@@ -46,7 +46,7 @@ export function* signInWithGoogle() {
     yield getSnapshotFromUser(user);
   } catch (error) {
     yield put(signInFailure(error.message));
-    yield handleError();
+    yield handleError("login");
   }
 }
 
@@ -60,7 +60,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
     yield getSnapshotFromUser(user);
   } catch (error) {
     yield put(signInFailure(error.message));
-    yield handleError();
+    yield handleError("login");
   }
 }
 
@@ -90,6 +90,7 @@ export function* signOut() {
     yield history.push("/signin");
   } catch (error) {
     yield put(signOutFailure(error.message));
+    yield handleError("logout");
   }
 }
 

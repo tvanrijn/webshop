@@ -29,18 +29,14 @@ class SignIn extends React.Component {
     emailSignInStart(email, password);
   };
 
-  handleGoogleSignIn = () => {
-    const { googleSignInStart } = this.props;
-
-    googleSignInStart();
-  };
-
   handleChange = event => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
 
   render() {
+    const { googleSignInStart } = this.props;
+
     return (
       <SignInContainer>
         <SignInTitle>I already have an account</SignInTitle>
@@ -66,7 +62,7 @@ class SignIn extends React.Component {
             <Button type="submit">Sign in</Button>
             <Button
               type="button"
-              onClick={this.handleGoogleSignIn}
+              onClick={googleSignInStart}
               isGoogleSignIn
             >
               Sign in with Google
