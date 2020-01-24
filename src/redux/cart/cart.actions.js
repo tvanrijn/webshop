@@ -21,4 +21,9 @@ export const decreaseQuantity = item => ({
 
 export const emptyCart = () => ({
   type: CartActionTypes.EMPTY_CART
-})
+});
+
+export const emptyCartFailure = errorMessage => ({
+  type: CartActionTypes.EMPTY_CART_FAILURE,
+  payload: errorMessage
+});

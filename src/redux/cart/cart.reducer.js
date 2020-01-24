@@ -3,7 +3,8 @@ import { addItemToCart, decreaseQuantity } from "./cart.utils";
 
 const INITIAL_STATE = {
   cartVisible: false,
-  cartItems: []
+  cartItems: [],
+  errorMessage: ''
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -32,6 +33,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: []
+      }
+    case CartActionTypes.EMPTY_CART_FAILURE:
+      return {
+        ...state,
+        errorMessage: action.payload
       }
     default:
       return state;
