@@ -15,7 +15,7 @@ import { ReactComponent as Logo } from "../../assets/crown.svg";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
-const Header = ({ currentUser, history, signOutStart, cartVisible }) => (
+const Header = ({ currentUser, signOutStart, cartVisible }) => (
   <HeaderContainer>
     <LogoContainer to="/">
       <Logo className="logo" title="Go to Shop homepage" />
