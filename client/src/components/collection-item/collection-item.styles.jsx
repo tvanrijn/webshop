@@ -20,6 +20,21 @@ export const CollectionItemContainer = styled.div`
       opacity: 0.8;
     }
   }
+
+  @media screen and (max-width: 800px) {
+    width: 40vw;
+
+    button {
+      opacity: unset;
+      display: unset;
+    }
+
+    &:hover {
+      .image {
+        opacity: unset;
+      }
+    }
+  }
 `;
 
 export const BackgroundImage = styled.div`

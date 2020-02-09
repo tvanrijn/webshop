@@ -58,4 +58,9 @@ export const ButtonContainer = styled.button`
   justify-content: center;
 
   ${getButtonStyles}
+
+  @media screen and (max-width: 800px) {
+    min-width: 100px;
+    padding: 0 10px;
+  }
 `;
