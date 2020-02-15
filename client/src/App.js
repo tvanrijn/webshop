@@ -26,19 +26,45 @@ const App = ({ checkUserSession, currentUser }) => {
       <GlobalStyle />
       <Header />
       <Switch>
-        <ErrorBoundary>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/shop" component={ShopPage} />
-            <Route
-              path="/signin"
-              render={() =>
-                currentUser !== null ? <Redirect to="/shop" /> : <SignInPage />
-              }
-            />
-            <Route path="/checkout" component={CheckoutPage} />
-          </Suspense>
-        </ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <Route
+            exact
+            path="/"
+            component={(props) => (
+              <ErrorBoundary>
+                <HomePage {...props}/>
+              </ErrorBoundary>
+            )}
+          />
+          <Route
+            path="/shop"
+            component={(props) => (
+              <ErrorBoundary>
+                <ShopPage {...props}/>
+              </ErrorBoundary>
+            )}
+          />
+          <Route
+            path="/signin"
+            render={(props) =>
+              currentUser !== null ? (
+                <Redirect to="/shop" />
+              ) : (
+                <ErrorBoundary>
+                  <SignInPage {...props}/>
+                </ErrorBoundary>
+              )
+            }
+          />
+          <Route
+            path="/checkout"
+            component={(props) => (
+              <ErrorBoundary>
+                <CheckoutPage {...props}/>
+              </ErrorBoundary>
+            )}
+          />
+        </Suspense>
       </Switch>
     </div>
   );
