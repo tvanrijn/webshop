@@ -49,5 +49,8 @@
   },
   "resolutions": {
     "serialize-javascript": "^2.1.1"
+  },
+  "devDependencies": {
+    "react-axe": "^3.4.1"
   }
 }
