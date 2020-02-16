@@ -26,7 +26,12 @@ describe("CartDropdown component", () => {
     wrapper = mount(<CartDropdown {...mockProps} />);
   });
 
+  afterEach(() => {
+    wrapper.unmount();
+  });
+
   it("should call history.push and toggleCart when button is clicked", () => {
+    expect(wrapper.find("CartDropdownButton").text()).toEqual("GO TO CHECKOUT");
     wrapper.find("CartDropdownButton").simulate("click");
     expect(mockHistory.push).toHaveBeenCalled();
     expect(mockDispatch).toHaveBeenCalledWith(toggleCart());
@@ -45,5 +50,6 @@ describe("CartDropdown component", () => {
 
     const newWrapper = mount(<CartDropdown {...mockProps} />);
     expect(newWrapper.exists("EmptyMessageContainer")).toBe(true);
+    newWrapper.unmount();
   });
 });
