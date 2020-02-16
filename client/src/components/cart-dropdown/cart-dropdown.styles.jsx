@@ -27,6 +27,10 @@ export const MessageContainer = styled.span`
   margin: 50px auto;
 `;
 
+MessageContainer.displayName = 'EmptyMessageContainer';
+
 export const ButtonContainer = styled(Button)`
   margin-top: auto;
 `;
+
+ButtonContainer.displayName = 'CartDropdownButton';
