@@ -4,7 +4,7 @@ import { addItemToCart, decreaseQuantity } from "./cart.utils";
 const INITIAL_STATE = {
   cartVisible: false,
   cartItems: [],
-  errorMessage: ''
+  errorMessage: ""
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -28,17 +28,22 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: decreaseQuantity(state.cartItems, action.payload)
-      }
+      };
     case CartActionTypes.EMPTY_CART:
       return {
         ...state,
         cartItems: []
-      }
+      };
     case CartActionTypes.EMPTY_CART_FAILURE:
       return {
         ...state,
         errorMessage: action.payload
-      }
+      };
+    case CartActionTypes.SET_FIREBASE_CART_SUCCESS:
+      return {
+        ...state,
+        cartItems: action.payload
+      };
     default:
       return state;
   }

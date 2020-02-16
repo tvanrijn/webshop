@@ -23,7 +23,24 @@ export const emptyCart = () => ({
   type: CartActionTypes.EMPTY_CART
 });
 
-export const emptyCartFailure = errorMessage => ({
-  type: CartActionTypes.EMPTY_CART_FAILURE,
+export const cartFailure = errorMessage => ({
+  type: CartActionTypes.CART_FAILURE,
   payload: errorMessage
+});
+
+export const setFirebaseCartStart = () => ({
+  type: CartActionTypes.SET_FIREBASE_CART_START
+});
+
+export const setFirebaseCartSuccess = cartItems => ({
+  type: CartActionTypes.SET_FIREBASE_CART_SUCCESS,
+  payload: cartItems
+});
+
+export const updateFirebaseCartStart = () => ({
+  type: CartActionTypes.UPDATE_FIREBASE_CART_START
+});
+
+export const updateFirebaseCartSuccess = () => ({
+  type: CartActionTypes.UPDATE_FIREBASE_CART_SUCCES
 });
