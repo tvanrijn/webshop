@@ -20,6 +20,8 @@ export const CollectionTitle = styled.h1`
   }
 `;
 
+CollectionTitle.displayName = "CollectionTitle";
+
 export const PreviewContainer = styled.div`
   display: flex;
   justify-content: space-between;

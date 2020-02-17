@@ -46,6 +46,8 @@ export const BackgroundImage = styled.div`
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;
 
+BackgroundImage.displayName = "BackgroundImage";
+
 export const AddButton = styled(Button)`
   width: 80%;
   opacity: 0.7;
@@ -54,6 +56,8 @@ export const AddButton = styled(Button)`
   display: none;
 `;
 
+AddButton.displayName = "AddButton";
+
 export const CollectionFooter = styled.div`
   width: 100%;
   height: 5%;
@@ -61,6 +65,8 @@ export const CollectionFooter = styled.div`
   justify-content: space-between;
   font-size: 18px;
 `;
+
+CollectionFooter.displayName = "CollectionFooter";
 
 export const NameContainer = styled.span`
   width: 90%;

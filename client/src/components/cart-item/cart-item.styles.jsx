@@ -11,6 +11,8 @@ export const CartItemImage = styled.img`
   width: 30%;
 `;
 
+CartItemImage.displayName = "CartItemImage";
+
 export const CartItemDetails = styled.div`
   width: 70%;
   display: flex;
@@ -19,3 +21,5 @@ export const CartItemDetails = styled.div`
   justify-content: center;
   padding: 10px 20px;
 `;
+
+CartItemDetails.displayName = "CartItemDetails";

@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
 import { CartDropdown } from "./cart-dropdown.component";
 import CartItem from "../cart-item/cart-item.component";
 import { toggleCart } from "../../redux/cart/cart.actions";
@@ -23,11 +23,7 @@ describe("CartDropdown component", () => {
       dispatch: mockDispatch
     };
 
-    wrapper = mount(<CartDropdown {...mockProps} />);
-  });
-
-  afterEach(() => {
-    wrapper.unmount();
+    wrapper = shallow(<CartDropdown {...mockProps} />);
   });
 
   it("should call history.push and toggleCart when button is clicked", () => {
@@ -48,8 +44,7 @@ describe("CartDropdown component", () => {
       dispatch: mockDispatch
     };
 
-    const newWrapper = mount(<CartDropdown {...mockProps} />);
+    const newWrapper = shallow(<CartDropdown {...mockProps} />);
     expect(newWrapper.exists("EmptyMessageContainer")).toBe(true);
-    newWrapper.unmount();
   });
 });
