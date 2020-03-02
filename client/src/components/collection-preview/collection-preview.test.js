@@ -49,7 +49,7 @@ describe("CollectionPreview component", () => {
     expect(wrapper.find(CollectionItem).length).toEqual(4);
   });
 
-  it("should render no items when collecion has no items", () => {
+  it("should render no items when collection has no items", () => {
     const mockProps2 = { ...mockProps, items: [] };
     const wrapper2 = shallow(<CollectionPreview {...mockProps2} />);
     expect(wrapper2.find(CollectionItem).length).toEqual(0);
